@@ -1,12 +1,25 @@
 package com.kordunyan.domain;
 
-public class Task {
+import org.hibernate.annotations.ManyToAny;
+import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
+
+@Entity
+public class Task {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotEmpty
 	private String date;
+	@NotEmpty
 	private String startTime;
+	@NotEmpty
 	private String stopTime;
+	@NotEmpty
 	private String description;
+	@ManyToOne
+	@JoinColumn(name="user_email")
 	private User user;
 
 	public Task() {

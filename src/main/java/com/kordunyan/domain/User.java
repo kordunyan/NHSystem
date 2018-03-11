@@ -1,13 +1,30 @@
 package com.kordunyan.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
-
+	@Id
+	@Email
+	@NotEmpty
+	@Column(unique = true)
 	private String email;
+	@NotEmpty
 	private String name;
+	@Size(min = 6)
 	private String password;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Task> tasks;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_roles", joinColumns = {
+			@JoinColumn(name="user_email", referencedColumnName = "email")
+	}, inverseJoinColumns = {@JoinColumn(name="role_name", referencedColumnName = "name")})
 	private List<Role> roles;
 
 	public User() {
