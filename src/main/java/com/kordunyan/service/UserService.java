@@ -17,11 +17,11 @@ public class UserService {
 	private UserDAO userDAO;
 
 	public void createUser(User user) {
-		createUserVithRole(user, new Role(Role.USER));
+		createUserWithRole(user, new Role(Role.USER));
 	}
 
 	public void createAdmin(User user) {
-		createUserVithRole(user, new Role(Role.ADMIN));
+		createUserWithRole(user, new Role(Role.ADMIN));
 	}
 
 	public User findOne(String email) {
@@ -29,7 +29,7 @@ public class UserService {
 	}
 
 
-	public void createUserVithRole(User user, Role role) {
+	public void createUserWithRole(User user, Role role) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
 		List<Role> roleList = new ArrayList<>();
