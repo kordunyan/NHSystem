@@ -38,4 +38,7 @@ public class UserService {
 		userDAO.save(user);
 	}
 
+	public boolean isUserPresent(String email) {
+		return findOne(email) != null;
+	}
 }
