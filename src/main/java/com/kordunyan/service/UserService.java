@@ -41,4 +41,12 @@ public class UserService {
 	public boolean isUserPresent(String email) {
 		return findOne(email) != null;
 	}
+
+	public List<User> findAll() {
+		return userDAO.findAll();
+	}
+
+	public List<User> findByName(String name) {
+		return userDAO.findByNameLike("%" + name + "%");
+	}
 }

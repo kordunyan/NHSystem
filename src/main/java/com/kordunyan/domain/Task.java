@@ -17,6 +17,7 @@ public class Task {
 	@NotEmpty
 	private String stopTime;
 	@NotEmpty
+	@Column(length = 1000)
 	private String description;
 	@ManyToOne
 	@JoinColumn(name="user_email")
@@ -86,5 +87,16 @@ public class Task {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Task{" +
+				"id=" + id +
+				", date='" + date + '\'' +
+				", startTime='" + startTime + '\'' +
+				", stopTime='" + stopTime + '\'' +
+				", description='" + description + '\'' +
+				'}';
 	}
 }
