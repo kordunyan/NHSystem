@@ -16,4 +16,9 @@ public class IndexController {
 	public String getLoginForm() {
 		return "views/login";
 	}
+
+	@GetMapping("/about")
+	public String getAboutPage() {
+		return "views/about";
+	}
 }
